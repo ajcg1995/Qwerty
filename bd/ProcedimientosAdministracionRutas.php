@@ -101,4 +101,31 @@ function modificarRuta($idRuta,$idEmpresa,$nombreRuta,$gps,$imgHorario,$rutaEsta
     }    
 }
 
+function trazarRutas($idRuta){
+    $instancia = Conexion::obtenerInstancia();
+    $conn = $instancia->obtenerConexion();
+    $query = "SELECT gps FROM `ruta` WHERE idRuta = $idRuta";
+    $result = $conn->query($sql);
+    $fila = mysqli_fetch_array($result,MYSQLI_ASSOC);
+    $conn->close();  
+    $ruta = $fila['gps'];
+    $fp = fopen("$ruta","r");
+    while (!feof($fp)){
+        $linea = fgets($fp); 
+        $arreglo[] = explode(",",$linea);        
+    }
+    
+    for($i=1;$i<sizeof($arreglo);$i++){
+        for($j=0;$j<2 ;$j++){
+            //echo $arreglo[$i][$j].'  ';
+            
+            $arreglo2 []= array(
+            "lant" => $arreglo[$i][$j],
+            "long" => $arreglo[$i][$j+1]);
+        break;
+         } 
+    }
+    print json_encode($arreglo2);       
+}
+
    
