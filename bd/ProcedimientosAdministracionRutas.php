@@ -125,7 +125,9 @@ function trazarRutas($idRuta){
         break;
          } 
     }
-    print json_encode($arreglo2);       
+    //return json_encode($arreglo2);   
+    return $result;
+    
 }
 
    

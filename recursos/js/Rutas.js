@@ -38,7 +38,7 @@ function Inicializar(){
             
             
 function TrazarRutaMapa(){ 
-    alert("Entro");
+    
    $.ajax({
       
         url: '../control/ControlAjaxRutas.php?idRuta=2',
