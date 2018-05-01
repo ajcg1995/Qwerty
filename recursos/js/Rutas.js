@@ -43,6 +43,7 @@ function TrazarRutaMapa(){
       
         url: '../control/ControlAjaxRutas.php?idRuta=2',
         success: function (response) { 
+            $('divContieneMapa').html(response);
             alert(response);
             console.log(response);
 
