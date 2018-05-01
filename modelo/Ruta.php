@@ -7,14 +7,16 @@ class Ruta {
     private $imgHorario;
     private $horario;
     private $estado;
+    private $idEmpresa;
    
-    function __construct($idRuta, $nombreRuta, $gps, $imgHorario, $horario, $estado) {
+    function __construct($idRuta, $nombreRuta, $gps, $imgHorario, $horario, $estado,$idEmpresa) {
         $this->idRuta = $idRuta;
         $this->nombreRuta = $nombreRuta;
         $this->gps = $gps;
         $this->imgHorario = $imgHorario;
         $this->horario = $horario;
         $this->estado = $estado;
+        $this->idEmpresa = $idEmpresa;
     }
 
     
@@ -41,6 +43,10 @@ class Ruta {
     function getEstado() {
         return $this->estado;
     }
+    
+    function obtenerIdEmpresa(){
+        return $this->idEmpresa;
+    }
 
     function modificarIdRuta($idRuta) {
         $this->idRuta = $idRuta;
@@ -65,4 +71,10 @@ class Ruta {
     function setEstado($estado) {
         $this->estado = $estado;
     }
+    
+    function modificarIdEmpresa($idEmpresa){
+        $this->idEmpresa = $idEmpresa;
+    }
+    
+    
 }
