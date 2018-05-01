@@ -110,11 +110,11 @@ function usuarioLogueado($usuario, $contrasenia) {
     if ($conn) {
         $instancia->cerrar($conn);
     }
-    if (password_verify($contrasenia, $contra)) {
+    /*if (password_verify($contrasenia, $contra)) {
         if (password_needs_rehash($contra, HASH, ['cost' => COST])) {
             $contrasenia = password_hash($contrasenia, HASH, ['cost' => COST]);
             modificarContrasena($usuario, $contrasenia);
-        }
+        }*/
         $instancia = Conexion::obtenerInstancia();
         $conn = $instancia->obtenerConexion();
         $query = 'call PAusuarioLogueado("' . $usuario . '","' . $contra . '")';
@@ -130,7 +130,7 @@ function usuarioLogueado($usuario, $contrasenia) {
             $instancia->cerrar($conn);
         }
         $res = count($filas) == 1 ? $filas : NULL;
-    }
+    //}
     return $res;
 }
 
