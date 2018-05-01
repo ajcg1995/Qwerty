@@ -105,7 +105,7 @@ function trazarRutas($idRuta){
     $instancia = Conexion::obtenerInstancia();
     $conn = $instancia->obtenerConexion();
     $query = "SELECT gps FROM `ruta` WHERE idRuta = $idRuta";
-    $result = $conn->query($sql);
+    $result = $conn->query($query);
     $fila = mysqli_fetch_array($result,MYSQLI_ASSOC);
     $conn->close();  
     $ruta = $fila['gps'];
