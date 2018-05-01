@@ -1,0 +1,36 @@
+* {
+    margin: 0px;
+    padding: 0px;   
+}
+
+html {
+    margin: 0px;
+    padding: 0px;  
+}
+
+.navbar {
+    -webkit-border-radius: 0px 0px;  /* Safari  */
+    -moz-border-radius: 0px 0px;     /* Firefox */
+}
+
+.notificacion {
+    position:fixed !important;
+    z-index: 11;
+    opacity: .99;
+    width:20%;
+    margin:0 auto;
+    height:100px;
+    padding:10px;
+    bottom: 0;
+    right: 0;
+    margin-right: 0.5%;
+    margin-bottom: 0.5%; 
+    vertical-align: sub;    
+}
+
+.modal-backdrop{
+    z-index: 10;
+    
+}
+
+
