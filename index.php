@@ -1,4 +1,4 @@
 <?php
 header('Location: vista/InicioSesion.php');
 
-echo "HOLA";
+echo "HOLA hola alkdsf;alskjfdlks;";
