@@ -1,9 +1,9 @@
 <?php
 header('Location: vista/InicioSesion.php');
 
+//HO
 
 
-
-//hola 
+///HOla hoahoadflk
 
 
