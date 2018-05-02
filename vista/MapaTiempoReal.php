@@ -9,7 +9,51 @@ and open the template in the editor. &callback=initMap
         <meta charset="UTF-8">
         <title></title>
 
-
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+          var config = {
+            apiKey: "AIzaSyBBqvWebwOCDVsT_eAEtZzXakPKuIsRXOE",
+            authDomain: "transporte-qwertycr.firebaseapp.com",
+            databaseURL: "https://transporte-qwertycr.firebaseio.com",
+            projectId: "transporte-qwertycr",
+            storageBucket: "transporte-qwertycr.appspot.com",
+            messagingSenderId: "375778182032"
+          };
+          firebase.initializeApp(config);
+          
+          
+        </script>
+        
+        
+        <script>
+            function baseData(){
+                
+                /*var n = firebase.database().ref("transporte").child("1").getValues();
+                console.log(n);*/
+                
+                var ref = firebase.database().ref("transporte").child("1")
+               /* firebase.database().ref().on('value', function(snapshot) {
+                    console.log(snapshot.val());
+                });*/
+                ref.on("child_added",function(sn){
+                    console.log(sn.val());
+                  //  console.log(sn.key());
+                })
+                
+                
+                 ref.on("child_changed",function(sn){
+                    console.log(sn.val());
+                  //  console.log(sn.key());
+                })
+            }
+            
+        </script>
+        
+        
+        
+        
+        
   <script src="../recursos/js/Rutas.js" type="text/javascript"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBqvWebwOCDVsT_eAEtZzXakPKuIsRXOE&callback=Inicializar"
   type="text/javascript"></script>
@@ -27,6 +71,9 @@ and open the template in the editor. &callback=initMap
             Aqui va mapa
         </div>
         <input type="submit" onclick="TrazarRutaMapa()" value="prueba" />
+        
+        
+        <input type="submit" onclick="baseData()" value="Basedata" />
         <?php
         // https://www.phpcentral.com/pregunta/231/aporte-geolocalizacion-de-usuario-w3c
         //https://www.phpcentral.com/pregunta/630/leer-coordenadas-y-trazar-ruta-en-google-maps
