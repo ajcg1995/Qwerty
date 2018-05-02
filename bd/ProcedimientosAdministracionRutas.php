@@ -113,20 +113,17 @@ function trazarRutas($idRuta){
     while (!feof($fp)){
         $linea = fgets($fp); 
         $arreglo[] = explode(",",$linea);        
-    }
-    
+    }   
     for($i=1;$i<sizeof($arreglo);$i++){
         for($j=0;$j<2 ;$j++){
-            //echo $arreglo[$i][$j].'  ';
-            
             $arreglo2 []= array(
-            "lant" => $arreglo[$i][$j],
-            "long" => $arreglo[$i][$j+1]);
+            "lat" => $arreglo[$i][$j],
+            "lng" => $arreglo[$i][$j+1]);
         break;
          } 
     }
     //return json_encode($arreglo2);   
-    return $result;
+    return json_encode($arreglo2);
     
 }
 

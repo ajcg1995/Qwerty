@@ -1,3 +1,4 @@
+var gMap;
 function Inicializar(){
                // alert("Entro");
                 var lat = 10.0000000;
@@ -9,7 +10,7 @@ function Inicializar(){
                     center: gLatLog
                 };
                 
-                var gMap = new google.maps.Map(document.getElementById('divContieneMapa') ,objConfiguracion);
+                 gMap = new google.maps.Map(document.getElementById('divContieneMapa') ,objConfiguracion);
               var   objConfigMarker = {
                     position:gLatLog,
                     map:gMap,
@@ -43,10 +44,34 @@ function TrazarRutaMapa(){
       
         url: '../control/ControlAjaxRutas.php?idRuta=2',
         success: function (response) { 
-            alert(response);
-            console.log(response);
+         var json = JSON.parse(response);
+         var flightPlanCoordinates  = new Array();
+           $.each(json, function (i,item){
+              flightPlanCoordinates.push(new google.maps.LatLng(item["lat"],item["lng"]));
+           });
 
+       var flightPath = new google.maps.Polyline({
+        path: flightPlanCoordinates,
+        geodesic: true,
+        strokeColor: '#FF0000',
+        strokeOpacity: 1.0,
+        strokeWeight: 3,
+         zoom: 20
+      });
+
+                 var objConfiguracion = {
+                    zoom: 20
+                };
+                
+                // gMap = new google.maps.Map(document.getElementById('divContieneMapa') ,objConfiguracion);
+      
+       flightPath.setMap(gMap);
+       
+       
+
+           // console.log(concat);
         }
+        
     }).fail(function (jqXHR, textStatus, errorThrown) {
         if (jqXHR.status === 0) {
 
