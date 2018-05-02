@@ -1,3 +1,11 @@
+
+<?php
+
+require_once '../control/ControlRutas.php';
+session_start();
+if (!isset($_SESSION['usuario'])) {
+    header('Location: ../index.php');
+    die();}?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -19,8 +27,6 @@ and open the template in the editor. &callback=initMap
 
 
         </script>
-
-
         <script>
 
 
@@ -34,8 +40,18 @@ and open the template in the editor. &callback=initMap
     </head>
 
     <body> 
+    <duv id="contieneCombo">
+        <SELECT id="cboRutas" NAME="selCombo" SIZE=1 onChange="TrazarRutaMapa()"> 
+            <OPTION VALUE="0">Seleccionar Ruta</OPTION>
+        <?php
+        $us = $_SESSION['usuario'];
+        $idEmpresa =  $us->obtenerEmpresa()->obtenerIdEmpresa();
+       echo ObtenerRutasPorEmpresa($idEmpresa);
+        ?>
+    </select>
+    </duv>
         <div id="divContieneMapa" style="width: 100%; height: 800px;margin: auto">
-            Aqui va mapa
+            Mostrando Mapa...
         </div>
         <input type="submit" onclick="TrazarRutaMapa()" value="prueba" />
 

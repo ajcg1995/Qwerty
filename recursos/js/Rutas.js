@@ -2,49 +2,24 @@ var gMap;
 var gMarker;
 var markers={};
 function Inicializar(){
-               // alert("Entro");
                 var lat = 10.0000000;
                 var log = -84.0000000;
-                
                 var gLatLog = new google.maps.LatLng(lat,log);
                 var objConfiguracion = {
-                    zoom: 5,
+                    zoom: 8,
                     center: gLatLog
-                };
-                
-                 gMap = new google.maps.Map(document.getElementById('divContieneMapa') ,objConfiguracion);
-              /*var   objConfigMarker = {
-                    position:gLatLog,
-                    map:gMap,
-                    title:"Hola Mundo"
-                };
-                var gMarker = new google.maps.Marker(objConfigMarker);
-                */
-                var gCoder = new google.maps.Geocoder();//Traduce una direccion en una cordenada
-                var objInformacion={
-                    address:'San Roque'
-                };
-                gCoder.geocode(objInformacion,fn_coder);
-                
-                function fn_coder(data){
-                  var coordenadas =   data[0].geometry.location;//objeto de tipo LantLog
-                    var   objConfigMarkers2 = {
-                    position:coordenadas,
-                    map:gMap,
-                    title:"Hola Mundo"
-                };
-                var gMarker2 = new google.maps.Marker(objConfigMarkers2);
-               // gMarker2.setIcon('../recursos/img/qwertylogo.png');
-                    
-                }
-                baseData();
+                };  
+                gMap = new google.maps.Map(document.getElementById('divContieneMapa') ,objConfiguracion);
+                //baseData();
             }
             
             
-function TrazarRutaMapa(){   
+function TrazarRutaMapa(){
+   // alert("entro"+$("#cboRutas").val())
    $.ajax({     
-        url: '../control/ControlAjaxRutas.php?idRuta=2',
-        success: function (response) { 
+        url: '../control/ControlAjaxRutas.php?idRuta='+$("#cboRutas").val(),
+        success: function (response) {
+            console.log(response);
          var json = JSON.parse(response);
          var flightPlanCoordinates  = new Array();
            $.each(json, function (i,item){
@@ -59,20 +34,9 @@ function TrazarRutaMapa(){
         strokeWeight: 3,
          zoom: 20
       });
-
-                 var objConfiguracion = {
-                    zoom: 20
-                };
-                
-                // gMap = new google.maps.Map(document.getElementById('divContieneMapa') ,objConfiguracion);
-      
        flightPath.setMap(gMap);
-       
-       
-
-           // console.log(concat);
-        }
-        
+       baseData($("#cboRutas").val());
+        } 
     }).fail(function (jqXHR, textStatus, errorThrown) {
         if (jqXHR.status === 0) {
 
@@ -91,8 +55,9 @@ function TrazarRutaMapa(){
     });  
 }
 
-function baseData() {
-                var config = {
+function baseData(idRuta) {
+   //alert($("#cboRutas").val());
+       var config = {
                 apiKey: "AIzaSyBBqvWebwOCDVsT_eAEtZzXakPKuIsRXOE",
                 authDomain: "transporte-qwertycr.firebaseapp.com",
                 databaseURL: "https://transporte-qwertycr.firebaseio.com",
@@ -101,8 +66,7 @@ function baseData() {
                 messagingSenderId: "375778182032"
             };
             firebase.initializeApp(config);
-
-                var ref = firebase.database().ref("transporte").child("1");
+                var ref = firebase.database().ref("transporte").child(idRuta);
                 ref.on("child_added", function (sn) {
                     var gLatLog = new google.maps.LatLng(sn.val()['lat'],sn.val()['lon']);
                     ColocarMarker(gLatLog,sn.key);

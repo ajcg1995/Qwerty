@@ -1,4 +1,5 @@
 function acceder(event) {
+    alert("Entro")
     var usuario = $('#usuario').val();
     var contrasena = $('#contrasena').val();
     $.ajax({

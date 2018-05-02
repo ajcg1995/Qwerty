@@ -131,6 +131,7 @@ function usuarioLogueado($usuario, $contrasenia) {
         }
         $res = count($filas) == 1 ? $filas : NULL;
     //}
+        
     return $res;
 }
 
@@ -177,7 +178,7 @@ function instanciaUsuario($fila) {
     $correo = $fila['correo'];
     $direccion = $fila['direccion'];
     $rol = new Rol($idRol, $nombreRol);
-    $empresa = new Empresa($idEmpresa, $nombreEmpresa, $encargado, $telefono, $direccion, $correo);
+    $empresa = new Empresa($idEmpresa, $nombreEmpresa, $encargado, $telefono, $correo,$direccion );
     return new Usuario($idUsuario, $nombreUsuario, $apellidoUsuario, $contrasena, $foto, $estadoUsuario, $empresa, $rol);
 }
 
@@ -195,6 +196,6 @@ function instanciaUsuarioLogueado($fila, $idUsuario, $contrasena) {
     $correo = $fila['correo'];
     $direccion = $fila['direccion'];
     $rol = new Rol($idRol, $nombreRol);
-    $empresa = new Empresa($idEmpresa, $nombreEmpresa, $encargado, $telefono, $direccion, $correo);
+    $empresa = new Empresa($idEmpresa, $nombreEmpresa, $encargado, $telefono, $correo,$direccion);
     return new Usuario($idUsuario, $nombreUsuario, $apellidoUsuario, $contrasena, $foto, $estadoUsuario, $empresa, $rol);
 }

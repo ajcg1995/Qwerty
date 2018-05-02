@@ -2,9 +2,6 @@
 require_once ("../bd/ProcedimientosAdministracionRutas.php");
 
 if(isset($_GET['idRuta'])){
-    
-    $resultado =  trazarRutas(2);
-    
+    $resultado =  trazarRutas($_GET['idRuta']);
     echo $resultado;
-    
 }

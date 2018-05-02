@@ -6,11 +6,11 @@ class Usuario {
     private $foto;
     private $estado;
     private $rol;
-    private $empresa;
+    private $empresa; //objeto
     private $apellidoUsuario;
     private $idUsuario;
 
-    function __construct($idUsuario,$nombreUsuario, $apellidoUsuario, $password, $foto, $estado, $empresa, $rol) {
+    public function __construct($idUsuario,$nombreUsuario, $apellidoUsuario, $password, $foto, $estado, $empresa, $rol) {
         $this->nombreUsuario = $nombreUsuario;
         $this->apellidoUsuario = $apellidoUsuario;
         $this->password = $password;
@@ -21,50 +21,50 @@ class Usuario {
         $this->idUsuario = $idUsuario;
     }
 
-    function obtenerApellidoUsuario(){
+  public  function obtenerApellidoUsuario(){
          return $this->apellidoUsuario;
     }
     function obtenerRol() {
         return $this->rol;
     }
 
-    function obtenerEmpresa() {
+    public function obtenerEmpresa() {
         return $this->empresa;
     }
 
-    function obtenerNombreUsuario() {
+  public  function obtenerNombreUsuario() {
         return $this->nombreUsuario;
     }
     
-    function obtenerIdUsuario() {
+   public function obtenerIdUsuario() {
         return $this->idUsuario;
     }
 
-    function obtenerPassword() {
+  public  function obtenerPassword() {
         return $this->password;
     }
 
-    function obtenerFoto() {
+  public  function obtenerFoto() {
         return $this->foto;
     }
 
-    function obtenerEstado() {
+  public  function obtenerEstado() {
         return $this->estado;
     }
 
-    function modificarNombreUsuario($nombreUsuario) {
+  public  function modificarNombreUsuario($nombreUsuario) {
         $this->nombreUsuario = $nombreUsuario;
     }
 
-    function modificarPassword($password) {
+   public function modificarPassword($password) {
         $this->password = $password;
     }
 
-    function modificarFoto($foto) {
+   public function modificarFoto($foto) {
         $this->foto = $foto;
     }
 
-    function modificarEstado($estado) {
+  public  function modificarEstado($estado) {
         $this->estado = $estado;
     }
 

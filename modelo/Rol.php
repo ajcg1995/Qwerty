@@ -5,24 +5,24 @@ class Rol {
     private $idRol;
     private $nombreRol;
     
-    function __construct($idRol, $nombreRol) {
+    public function __construct($idRol, $nombreRol) {
         $this->idRol = $idRol;
         $this->nombreRol = $nombreRol;
     }
     
-    function obtenerIdRol() {
+   public function obtenerIdRol() {
         return $this->idRol;
     }
 
-    function obtenerNombreRol() {
+    public function obtenerNombreRol() {
         return $this->nombreRol;
     }
 
-    function modificarIdRol($idRol) {
+   public function modificarIdRol($idRol) {
         $this->idRol = $idRol;
     }
 
-    function modificarNombreRol($nombreRol) {
+  public  function modificarNombreRol($nombreRol) {
         $this->nombreRol = $nombreRol;
     }
 

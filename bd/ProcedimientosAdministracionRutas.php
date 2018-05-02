@@ -1,14 +1,26 @@
 <?php
 require_once '../bd/Conexion.php';
 require_once '../modelo/Ruta.php';
+require_once '../modelo/Usuario.php';
 require_once '../modelo/Empresa.php';
-
+require_once '../modelo/Rol.php';
 
 function listarRutas($idEmpresa){
     $instancia = Conexion::obtenerInstancia();
     $conn = $instancia->obtenerConexion();   
-    $query = 'call PAinsertarRuta()';
-    $resultado = $conn->query($query);
+    $query = "call PAlistarRutas($idEmpresa)";
+    if (mysqli_multi_query($conn, $query)) {
+        if($result = mysqli_store_result($conn)) {
+     
+        return $result;  
+      
+   /*  */
+        }
+        
+    }
+    //$resultado = $conn->query($query);
+
+    /*
     $filas = array();
     if ($resultado === false) {
         return false;
@@ -26,7 +38,7 @@ function listarRutas($idEmpresa){
     if ($conn) {
         $instancia->cerrar($conn);
     }
-    return $filas;
+    return $filas;*/
 }
 
 function insertarRutas($idEmpresa,$nombreRuta,$gps,$imgHorario,$rutaEstatus,$horario){
