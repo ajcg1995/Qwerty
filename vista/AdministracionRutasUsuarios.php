@@ -1,13 +1,24 @@
+<?php 
+
+/*
+if(!isset($_SESSION['usuario'])){
+    header('Location: ../index.php');
+    die();   
+}*/
+?>
 <!DOCTYPE html>
 <html> 
     <head>        
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
         <script  type="text/javascript" src="../recursos/js/Administracion.js"></script>   
+        <script  type="text/javascript" src="../recursos/js/Rutas.js"></script> 
         <link href="../recursos/css/Administracion.css" rel="stylesheet"/>
         <?php
         require ("../control/ControlArchivosCabecera.php");
         require ("../control/ControlAdministracionRutas.php");
         require ("../bd/ProcedimientosAdministracionRutas.php");
+        require ("../control/ControlRutas.php");
+        
         ?>   
     </head>     
     <body>   
@@ -18,16 +29,16 @@
         <h1>Administración Rutas</h1>
         <div class="container-fluid">
             <div class="row">
-                <div class=""></div>
+                <div class=""></div>                    
                 <div class="col-md-12">
                     <div id="tab-indice" class="tab">
-                        <button class="tablinks" onclick="abrirTab(event, 'admin-empresas')" id="defaultOpen">Horarios</button>
-                        <button class="tablinks" onclick="abrirTab(event, 'admin-rutas')" >Tarifa</button>                        
-                        <button class="tablinks" onclick="abrirTab(event, 'admin-buses')">GPS</button>
-                        <button class="tablinks" onclick="abrirTab(event, 'admin-tiempo-real')">Tiempo real</button>
+                        <button class="tablinks" onclick="abrirTab(event, 'admin-rutas')" id="defaultOpen">Administracion General</button>
+                        <button class="tablinks" onclick="abrirTab(event, 'admin-empresas')" >Noticias</button>                        
+                        <button class="tablinks" onclick="llamarMapa()">Tiempo real</button>
+                        <button class="tablinks" onclick="abrirTab(event, 'admin-tiempo-real')">Buses</button>
                     </div>       
                     <section id="admin-rutas" class="tabcontent tab-oculto">
-                        <h1>Rutas por empresa</h1>
+                        <h1>Administración Ruta</h1>
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-md-1"></div> 
@@ -51,11 +62,19 @@
                                             <th>Número de ruta</th>
                                             <th>Tarifas</th>
                                             <th>Horario</th>
-                                            <th>GPS</th>                                            
-                                            <th>Horario</th>
+                                            <th>Noticias</th>                                            
+                                            
                                             </thead>
                                             <tbody>
-                                                <?php // tablaPermisos($permisos);  ?>
+                                                
+                                                <?php 
+                                                
+                                                $us = $_SESSION['usuario'];
+                                                $idEmpresa = $us->obtenerEmpresa()->obtenerIdEmpresa();
+                                                echo tablaRutas($idEmpresa) 
+                                                
+                                                
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -64,7 +83,7 @@
                         </div>
                     </section>              
                     <section id="admin-empresas" class="tabcontent tab-oculto">
-                        <h1>Administracion de empresas</h1>
+                        <h1>Noticias</h1>
                         <div class="container-fluid">
                             <div class="row">
                                 <div class=""></div>                                
@@ -78,20 +97,16 @@
                                 <div class="col-md-12 ">
                                     <div class="table table-responsive">  
                                         <table class="table table-hover">
-                                            <thead>                                              
-                                            <th>id</th>
-                                            <th>Empresa</th>
-                                            <th>Encargado</th>
-                                            <th>Telefono</th>                                            
-                                            <th>Correo</th>
-                                            <th>Direccion</th>
-                                            <th>Editar</th>
-                                            <th>Eliminar</th>
-                                            <th>Activo</th>                                            
-                                            <th>Rutas</th>
+                                            <thead>
+                                            <th>Ruta</th>
+                                            <th>Número de ruta</th>
+                                            <th>Tarifas</th>
+                                            <th>Horario</th>
+                                            <th>GPS</th>                                            
+                                            <th>Horario</th>
                                             </thead>
                                             <tbody>
-                                                <?php //tablaEmpresas($empresas); ?>
+                                                <?php // tablaPermisos($permisos);  ?>
                                             </tbody>
                                         </table>
                                     </div>

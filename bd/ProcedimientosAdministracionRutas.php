@@ -139,4 +139,14 @@ function trazarRutas($idRuta){
     
 }
 
+function listarRutasEmpresa($idEmpresa){
+    $instancia = Conexion::obtenerInstancia();
+    $conn = $instancia->obtenerConexion();   
+    $query = "Call PAlistarRutasEmpresa($idEmpresa)";
+    if (mysqli_multi_query($conn, $query)) {
+        if($result = mysqli_store_result($conn)) {   
+        return $result;    
+        }      
+    }     
+}
    

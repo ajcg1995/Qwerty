@@ -21,10 +21,10 @@ class Usuario {
         $this->idUsuario = $idUsuario;
     }
 
-  public  function obtenerApellidoUsuario(){
+    public  function obtenerApellidoUsuario(){
          return $this->apellidoUsuario;
     }
-    function obtenerRol() {
+    public function obtenerRol() {
         return $this->rol;
     }
 

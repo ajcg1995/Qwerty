@@ -40,7 +40,7 @@ $us = (isset($_SESSION['usuario'])) ? $_SESSION['usuario'] : NULL;
                     <li class="dropdown ">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b> Administracion de Rutas </b> <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="../vista/AdministracionRutas.php">Horarios</a></li>                        
+                            <li><a href="../vista/AdministracionRutasUsuarios.php">Horarios</a></li>                        
                             <li><a href="../vista/AdministracionRutas.php">Tarifas</a></li>                        
                             <li><a href="../vista/AdministracionRutas.php">GPS</a></li> 
                             <li><a href="../vista/AdministracionRutas.php">Tiempo real</a></li>   
