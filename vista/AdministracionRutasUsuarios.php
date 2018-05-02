@@ -119,5 +119,78 @@ if(!isset($_SESSION['usuario'])){
                 <div class="col-md-1"></div>
             </div>
         </div>
+        
+        
+        
+  <!---------------------------- MODAL AGREGAR NOTICIA------------------------------- -->
+
+
+  <!-- Modal -->
+  <div id="ModalAgregarNoticias" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Agregar Noticias</h4>
+              </div>
+              <div class="modal-body">
+                  <div class="form-group"> 
+                      <h4 id="idRuta"> </h4>
+                  </div>
+                  
+                  <div class="form-group">                  
+                      <h4 id="nombreRuta"> </h4>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="email">Descripción Noticia</label>
+                      <textarea placeholder="Escriba aquí su noticia..." type="text" class="form-control" id="descripcionNoticia" rows="9" > 
+                      </textarea>
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="pwd">Fecha Noticia</label>
+                      <input type="date" class="form-control" id="fechaNoticia">
+                  </div>
+                  
+                  <button type="button" class="btn btn-success" onclick="ajaxAgregarNoticia()">Agregar</button>  
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+          </div>
+
+      </div>
+  </div>
+
+  <!---------------------TERMINA MODAL AGREGAR NOTICIA------------------------------- -->
+
+
+
+
+
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     </body>
 </html>

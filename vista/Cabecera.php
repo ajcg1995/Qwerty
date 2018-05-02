@@ -5,6 +5,10 @@ $us = (isset($_SESSION['usuario'])) ? $_SESSION['usuario'] : NULL;
 ?>
 <header>    
     <script  type="text/javascript" src="../recursos/js/Cabecera.js"></script> 
+    <link href="../recursos/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../recursos/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    
+    
     <nav  class="navbar navbar-inverse" role="navigation">
         <div class="navbar-header">            
 

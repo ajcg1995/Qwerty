@@ -107,6 +107,24 @@ function ActualizarMarker(id, gLatLog) {
 function llamarMapa(){
         window.location.href = "../vista/MapaTiempoReal.php";
     }
+    
+    
+function abrirModalAgregarNoticia(evento){
+  
+    $('#ModalAgregarNoticias').modal('show');
+    
+    var idCodigo = $(evento).parents("tr").find("td").eq(1).html();
+    var nombreRuta = $(evento).parents("tr").find("td").eq(0).html();
+    $('#idRuta').html(idCodigo);
+    $('#nombreRuta').html(nombreRuta);
+   
+}  
+
+function ajaxAgregarNoticia(){
+    
+    alert("entre");
+    
+}
 
 
 

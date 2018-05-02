@@ -22,7 +22,7 @@ function tablaRutas($idEmpresa){
         . '<td>' . $fila['idRuta'].'</td>'
         . '<td>' . $fila['monto']  . '</td>'
         . '<td>' . $fila['imgHorario']  . '</td>'  
-        . '<td><button class ="btn btn-warning"><i class = "glyphicon glyphicon-pencil"></i></button></td>' 
+        . '<td><button onclick="abrirModalAgregarNoticia(this)" class ="btn btn-warning"><i class = "glyphicon glyphicon-pencil"></i></button></td>' 
    . '</tr>';
     }
     return $concat;  
