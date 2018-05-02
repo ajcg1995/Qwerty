@@ -1,4 +1,6 @@
 var gMap;
+var gMarker;
+var markers={};
 function Inicializar(){
                // alert("Entro");
                 var lat = 10.0000000;
@@ -11,13 +13,13 @@ function Inicializar(){
                 };
                 
                  gMap = new google.maps.Map(document.getElementById('divContieneMapa') ,objConfiguracion);
-              var   objConfigMarker = {
+              /*var   objConfigMarker = {
                     position:gLatLog,
                     map:gMap,
                     title:"Hola Mundo"
                 };
                 var gMarker = new google.maps.Marker(objConfigMarker);
-                
+                */
                 var gCoder = new google.maps.Geocoder();//Traduce una direccion en una cordenada
                 var objInformacion={
                     address:'San Roque'
@@ -35,13 +37,12 @@ function Inicializar(){
                // gMarker2.setIcon('../recursos/img/qwertylogo.png');
                     
                 }
+                baseData();
             }
             
             
-function TrazarRutaMapa(){ 
-    
-   $.ajax({
-      
+function TrazarRutaMapa(){   
+   $.ajax({     
         url: '../control/ControlAjaxRutas.php?idRuta=2',
         success: function (response) { 
          var json = JSON.parse(response);
@@ -89,6 +90,55 @@ function TrazarRutaMapa(){
 
     });  
 }
+
+function baseData() {
+                var config = {
+                apiKey: "AIzaSyBBqvWebwOCDVsT_eAEtZzXakPKuIsRXOE",
+                authDomain: "transporte-qwertycr.firebaseapp.com",
+                databaseURL: "https://transporte-qwertycr.firebaseio.com",
+                projectId: "transporte-qwertycr",
+                storageBucket: "transporte-qwertycr.appspot.com",
+                messagingSenderId: "375778182032"
+            };
+            firebase.initializeApp(config);
+
+                var ref = firebase.database().ref("transporte").child("1");
+                ref.on("child_added", function (sn) {
+                    var gLatLog = new google.maps.LatLng(sn.val()['lat'],sn.val()['lon']);
+                    ColocarMarker(gLatLog,sn.key);
+                });
+
+
+                ref.on("child_changed", function (sn) {
+                   var gLatLog = new google.maps.LatLng(sn.val()['lat'],sn.val()['lon']);
+                    ActualizarMarker(sn.key,gLatLog);
+                   // console.log(sn.val()['lat']);
+                });
+            }
+            function ColocarMarker(gLatLog,name) {
+              var   objConfigMarker = {
+                    id:name,
+                    position:gLatLog,
+                    map:gMap,
+                    title:name
+                };
+               
+               gMarker = new google.maps.Marker(objConfigMarker);
+                markers[name]=gMarker;
+            }
+            function ActualizarMarker(id,gLatLog) {
+                console.log(gMarker);
+                if (markers[id]) {
+                    markers[id].setMap(null);
+                    delete markers[id];
+        
+    }
+                
+               // gMarker[id].setMap(null);
+                //gMarker[id]
+                //marker.setMap(null);
+                 ColocarMarker(gLatLog,id);
+            }
 
 
 
