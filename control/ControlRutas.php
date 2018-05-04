@@ -30,8 +30,7 @@ function tablaRutas($idEmpresa){
    }else{
        return "No se encontraron Datos";
    }
-   
-   
+    
 }
 
 

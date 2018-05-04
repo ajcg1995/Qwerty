@@ -12,10 +12,10 @@ if(!isset($_SESSION['usuario'])){
         <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
         <script  type="text/javascript" src="../recursos/js/Administracion.js"></script>   
         <script  type="text/javascript" src="../recursos/js/Rutas.js"></script> 
+        <script  type="text/javascript" src="../recursos/js/Noticias.js"></script> 
         <link href="../recursos/css/Administracion.css" rel="stylesheet"/>
         <?php
         require ("../control/ControlArchivosCabecera.php");
-        require ("../control/ControlAdministracionRutas.php");
         require ("../bd/ProcedimientosAdministracionRutas.php");
         require ("../control/ControlRutas.php");
         
@@ -56,7 +56,7 @@ if(!isset($_SESSION['usuario'])){
                                 <div class="col-md-1"></div>
                                 <div class="col-md-10 ">
                                     <div class="table table-responsive">  
-                                        <table class="table table-hover">
+                                        <table class="table table-hover" id="tablaRutas">
                                             <thead>
                                             <th>Ruta</th>
                                             <th>Número de ruta</th>
@@ -155,7 +155,7 @@ if(!isset($_SESSION['usuario'])){
                       <input type="date" class="form-control" id="fechaNoticia">
                   </div>
                   
-                  <button type="button" class="btn btn-success" onclick="ajaxAgregarNoticia()">Agregar</button>  
+                  <button type="button" class="btn btn-success" onclick="ajaxAgregarNoticiaRuta()">Agregar</button>  
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

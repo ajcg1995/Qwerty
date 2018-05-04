@@ -119,15 +119,3 @@ function abrirModalAgregarNoticia(evento){
     $('#nombreRuta').html(nombreRuta);
    
 }  
-
-function ajaxAgregarNoticia(){
-    
-    alert("entre");
-    
-}
-
-
-
-
-
-
