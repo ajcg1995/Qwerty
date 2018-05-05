@@ -1,11 +1,4 @@
-<?php 
 
-/*
-if(!isset($_SESSION['usuario'])){
-    header('Location: ../index.php');
-    die();   
-}*/
-?>
 <!DOCTYPE html>
 <html> 
     <head>        
@@ -18,6 +11,7 @@ if(!isset($_SESSION['usuario'])){
         require ("../control/ControlArchivosCabecera.php");
         require ("../bd/ProcedimientosAdministracionRutas.php");
         require ("../control/ControlRutas.php");
+        require ("../control/ControlNoticias.php");
         
         ?>   
     </head>     
@@ -98,15 +92,19 @@ if(!isset($_SESSION['usuario'])){
                                     <div class="table table-responsive">  
                                         <table class="table table-hover">
                                             <thead>
-                                            <th>Ruta</th>
-                                            <th>Número de ruta</th>
-                                            <th>Tarifas</th>
-                                            <th>Horario</th>
-                                            <th>GPS</th>                                            
-                                            <th>Horario</th>
+                                            <th>IdNoticia</th>
+                                            <th>idRuta</th>
+                                            <th>FechaNoticia</th>
+                                            <th>Descripcion</th>
+                                            <th>idEmpresa</th>                                            
+                                           
                                             </thead>
                                             <tbody>
-                                                <?php // tablaPermisos($permisos);  ?>
+                                                <?php 
+                                                    $us = $_SESSION['usuario'];
+                                                    $idEmpresa = $us->obtenerEmpresa()->obtenerIdEmpresa();
+                                                    echo tablaNoticias($idEmpresa);
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -165,32 +163,8 @@ if(!isset($_SESSION['usuario'])){
       </div>
   </div>
 
-  <!---------------------TERMINA MODAL AGREGAR NOTICIA------------------------------- -->
-
-
-
-
-
-
-
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+  <!---------------------TERMINA MODAL AGREGAR NOTICIA------------------------------- --
+  
         
     </body>
 </html>

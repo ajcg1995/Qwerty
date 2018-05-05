@@ -1,5 +1,6 @@
 <?php
 require_once '../bd/ProcedimientosAdministracionRutas.php';
+
 function ObtenerRutasPorEmpresa($idEmpresa){
    $result =  listarRutas($idEmpresa);  
    $concat="";
