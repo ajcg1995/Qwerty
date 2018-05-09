@@ -159,6 +159,9 @@ function listarPermisosPorRol() {
         $nombrePermiso = $fila['nombrePermiso'];
         $filas[] = new Permiso($idPermiso, $nombrePermiso);
     }
+    if ($conn) {
+        $instancia->cerrar($conn);
+    }
     return $filas;
 }
 

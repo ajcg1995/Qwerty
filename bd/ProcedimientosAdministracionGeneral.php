@@ -11,6 +11,10 @@ function listarQuery($opc){
     else if($opc == 2){
         $query = 'call PAlistarRutas()';
     }
+    
+    if ($conn) {
+        $instancia->cerrar($conn);
+    }
     return $query;
 }
 

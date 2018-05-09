@@ -8,12 +8,15 @@ require_once '../modelo/Rol.php';
 function listarRutas($idEmpresa){
     $instancia = Conexion::obtenerInstancia();
     $conn = $instancia->obtenerConexion();   
-    $query = "call PAlistarRutas($idEmpresa)";
+    $query = "call PAListarRutasEmpresa($idEmpresa)";
     if (mysqli_multi_query($conn, $query)){
-        if($result = mysqli_store_result($conn)) {   
-            return $result;  
-        }   
+       $result = mysqli_store_result($conn);     
     }
+    if ($conn) {
+        $instancia->cerrar($conn);
+    }
+    
+    return $result != null ? $result : null;
 
 }
 
@@ -123,6 +126,10 @@ function listarRutasEmpresa($idEmpresa){
         if($result = mysqli_store_result($conn)) {   
         return $result;    
         }      
-    }     
+    }
+    if ($conn) {
+        $instancia->cerrar($conn);
+    }
+    
 }
    

@@ -62,3 +62,8 @@ h1 {
 .tab-oculto{
     display: none;
 }
+
+
+#modal-headerAgregarNoticia{
+    background: #337ab7;
+}

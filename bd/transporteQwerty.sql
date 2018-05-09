@@ -60,9 +60,8 @@ CREATE TABLE noticia
 	idNoticia int NOT NULL AUTO_INCREMENT, PRIMARY KEY(idNoticia),
 	fechaNoticia date,
 	descripcionNoticia varchar (1000),
-	idEmpresa int,
-	imgNoticia blob,
-	FOREIGN KEY (idEmpresa) REFERENCES empresa(idEmpresa) 
+	idRuta int,
+	FOREIGN KEY (idRuta) REFERENCES empresa(idRuta) 
 );
 
 CREATE TABLE ruta
@@ -305,6 +304,108 @@ COMMIT;
 END
 $$
 DELIMITER ;
+
+
+
+DELIMITER $$
+ 
+CREATE PROCEDURE  PAinsertarRuta
+(
+in idEmpresa int,
+in nombreRuta varchar(150),
+in gps varchar(500),
+in imgHorario blob,
+in rutaEstatus varchar(20),
+in horario varchar(150)    
+)
+BEGIN
+insert into ruta(idEmpresa,nombreRuta,gps,imgHorario,rutaEstatus,horario) values(idEmpresa,nombreRuta,gps,imgHorario,rutaEstatus,horario);
+END
+
+DELIMITER $$
+ 
+CREATE PROCEDURE PAlistarRutas 
+( 
+in idEmpresa int 
+) 
+BEGIN 
+select * from ruta where idEmpresa = idEmpresa; 
+END 
+
+
+DELIMITER $$
+CREATE PROCEDURE PAborrarRuta 
+( 
+in idRuta int 
+) 
+BEGIN 
+DELETE from ruta where idRuta = idRuta; 
+END 
+
+
+CREATE PROCEDURE PAbuscarRuta 
+( 
+in idRuta int 
+) 
+BEGIN 
+select * from ruta where idRuta = idRuta; 
+END 
+
+
+
+CREATE PROCEDURE PAmodificarRuta 
+( 
+in idRuta int, 
+in idEmpresa int, 
+in nombreRuta varchar(150), 
+in gps varchar(500), 
+in imgHorario blob, 
+in rutaEstatus varchar(20), 
+in horario varchar(150) 
+) 
+BEGIN UPDATE `ruta` SET idEmpresa =idEmpresa,`nombreRuta`= nombreRuta,`gps`=gps,`imgHorario`=imgHorario,`rutaEstatus`=rutaEstatus,`horario`=horario 
+WHERE idRuta = idRuta; 
+END 
+
+
+CREATE PROCEDURE PAinsertarNoticia ( 
+in idRuta int, in fechaNoticia date, in descripcionNoticia varchar(1000), in idEmpresa int 
+) BEGIN insert into noticia(idRuta,fechaNoticia,descripcionNoticia,idEmpresa) 
+values(idRuta,fechaNoticia,descripcionNoticia,idEmpresa); 
+END 
+
+CREATE PROCEDURE PAlistarNoticiasEmpresa 
+( 
+in idEmpresa int 
+) 
+BEGIN select * from noticia where idEmpresa = idEmpresa;
+END 
+
+
+----------------------------------------MODIFICAR NOTICIA----------------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE PAmodificarNoticias 
+( 
+in idRuta int,
+in fechaNoticia date, 
+in descripcionNoticia varchar(1000), 
+in idEmpresa int 
+) 
+BEGIN 
+update noticia set idRuta = idRuta,fechaNoticia = fechaNoticia,descripcionNoticia = descripcionNoticia,idEmpresa = idEmpresa 
+where idNoticia = idNoticia;
+END 
+
+---------------------------ELIMINAR NOTICIA ------------------------------------------------
+DELIMITER $$
+CREATE PROCEDURE PAborrarNoticia 
+(
+ in idNoticia int 
+) 
+BEGIN DELETE from noticia where idNoticia = idNoticia; 
+END 
+
+
 
 
 

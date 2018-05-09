@@ -9,15 +9,14 @@ function Inicializar() {
         zoom: 8,
         center: gLatLog
     };
-    gMap = new google.maps.Map(document.getElementById('divContieneMapa'), objConfiguracion);
+    gMap = new google.maps.Map(document.getElementById('map-canva'), objConfiguracion);
     //baseData();
 }
 
 
 function TrazarRutaMapa() {
-    // alert("entro"+$("#cboRutas").val())
-    $.ajax({
-        url: '../control/ControlAjaxRutas.php?idRuta=' + $("#cboRutas").val(),
+       $.ajax({
+        url: '../control/ControlAjaxRutas.php?idRuta=' + $("#cboRutas").val(),     
         success: function (response) {
             console.log(response);
             var json = JSON.parse(response);
@@ -35,7 +34,7 @@ function TrazarRutaMapa() {
                 zoom: 20
             });
             flightPath.setMap(gMap);
-            baseData($("#cboRutas").val());
+            baseData($("#cboRutas").val()); //llamada a la funcion para trazar Marker en el mapa
         }
     }).fail(function (jqXHR, textStatus, errorThrown) {
         if (jqXHR.status === 0) {
@@ -117,5 +116,24 @@ function abrirModalAgregarNoticia(evento){
     var nombreRuta = $(evento).parents("tr").find("td").eq(0).html();
     $('#idRuta').html(idCodigo);
     $('#nombreRuta').html(nombreRuta);
+   
+}  
+
+function abrirModalModificarNoticia(evento){
+  
+    $('#ModalModificarNoticias').modal('show');
+    
+    var idNoticiaM = $(evento).parents("tr").find("td").eq(0).html();
+    var idRutaM = $(evento).parents("tr").find("td").eq(1).html();
+    var fechaNoticiaM = $(evento).parents("tr").find("td").eq(2).html();
+    var descripcionM = $(evento).parents("tr").find("td").eq(3).html();
+    
+    alert(idNoticiaM);
+    
+    $('#idNoticiaM').html(idNoticiaM);
+    $('#idRutaM').html(idRutaM);
+    $('#fechaNoticiaM').val(fechaNoticiaM);
+    $('#descripcionNoticiaM').val(descripcionM);
+   
    
 }  

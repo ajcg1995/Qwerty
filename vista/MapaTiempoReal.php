@@ -1,62 +1,38 @@
-
-<?php
-
-require_once '../control/ControlRutas.php';
-session_start();
-if (!isset($_SESSION['usuario'])) {
-    header('Location: ../index.php');
-    die();}?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor. &callback=initMap
--->
+
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
-        <script src="../recursos/js/Rutas.js" type="text/javascript"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBqvWebwOCDVsT_eAEtZzXakPKuIsRXOE&callback=Inicializar"
-        type="text/javascript"></script>
-        <script src="../recursos/bootstrap/js/jquery1.12.4.js" type="text/javascript"></script>
-        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
-        <script>
-            // Initialize Firebase
-
-
-
-        </script>
-        <script>
-
-
-        </script>
-
-
-
-
-
+        <title></title>  
+        <link href="../recursos/css/EstiloGeneral.css" rel="stylesheet" type="text/css"/>
+    <?php
+    require_once '../control/ControlRutas.php';
+    require ("../control/ControlArchivosCabecera.php");
+    ?>
 
     </head>
 
-    <body> 
-    <duv id="contieneCombo">
-        <SELECT id="cboRutas" NAME="selCombo" SIZE=1 onChange="TrazarRutaMapa()"> 
+    <body id="MapaContenedor"> 
+        <?php       
+        require("../vista/Cabecera.php");       
+        ?>          
+    <div id="contieneCombo">
+        <select id="cboRutas" class="form-control" NAME="selCombo" SIZE=1 onChange="TrazarRutaMapa()"> 
             <OPTION VALUE="0">Seleccionar Ruta</OPTION>
-        <?php
-        $us = $_SESSION['usuario'];
-        $idEmpresa =  $us->obtenerEmpresa()->obtenerIdEmpresa();
-       echo ObtenerRutasPorEmpresa($idEmpresa);
-        ?>
-    </select>
-    </duv>
-        <div id="divContieneMapa" style="width: 100%; height: 800px;margin: auto">
+            <?php
+                $us = $_SESSION['usuario'];
+                $idEmpresa =  $us->obtenerEmpresa()->obtenerIdEmpresa();
+                echo ObtenerRutasPorEmpresa($idEmpresa);
+            ?>
+        </select>
+    </div>
+        
+    <div id="map-canva" style="width: 90%; height: 450px;margin: auto">
             Mostrando Mapa...
-        </div>
+    </div>
+        <!--
         <input type="submit" onclick="TrazarRutaMapa()" value="prueba" />
-
-
-        <input type="submit" onclick="baseData()" value="Basedata" />
+        <input type="submit" onclick="baseData(1)" value="Basedata" /> -->
         <?php
         // https://www.phpcentral.com/pregunta/231/aporte-geolocalizacion-de-usuario-w3c
         //https://www.phpcentral.com/pregunta/630/leer-coordenadas-y-trazar-ruta-en-google-maps
@@ -64,3 +40,13 @@ and open the template in the editor. &callback=initMap
         ?>
     </body>
 </html>
+
+<script src="../recursos/js/Rutas.js" type="text/javascript"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBqvWebwOCDVsT_eAEtZzXakPKuIsRXOE&callback=Inicializar"
+        type="text/javascript"></script>
+        <script src="../recursos/bootstrap/js/jquery1.12.4.js" type="text/javascript"></script>
+        
+        <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js">
+            
+            
+</script>

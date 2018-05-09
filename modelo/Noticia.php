@@ -5,17 +5,21 @@ class Noticia {
     private $idNoticia;
     private $fechaNoticias;
     private $descripcionNoticias;
-    private $imgNoticias;
+    private $idRuta;
+ 
     
-    function __construct($idNoticia, $fechaNoticias, $descripcionNoticias, $imgNoticias) {
+    function __construct($idNoticia, $fechaNoticias, $descripcionNoticias,$idRuta) {
         $this->idNoticia = $idNoticia;
         $this->fechaNoticias = $fechaNoticias;
         $this->descripcionNoticias = $descripcionNoticias;
-        $this->imgNoticias = $imgNoticias;
+        $this->idRuta = $idRuta;
     }
     
     function obtenerIdNoticia() {
         return $this->idNoticia;
+    }
+    function obtenerIdRuta() {
+        return $this->idRuta;
     }
 
     function obtenerFechaNoticias() {
@@ -26,10 +30,9 @@ class Noticia {
         return $this->descripcionNoticias;
     }
 
-    function obtenerImgNoticias() {
-        return $this->imgNoticias;
+    function obtenerRutaNoticias(){
+        return $this->idRuta;
     }
-
     function modificarIdNoticia($idNoticia) {
         $this->idNoticia = $idNoticia;
     }
@@ -41,8 +44,10 @@ class Noticia {
     function modificarDescripcionNoticias($descripcionNoticias) {
         $this->descripcionNoticias = $descripcionNoticias;
     }
-
-    function modificarImgNoticias($imgNoticias) {
-        $this->imgNoticias = $imgNoticias;
+    function modificarRutaNoticias($idRuta){
+        $this->idRuta = $idRuta;
     }
+    
+
+    
 }

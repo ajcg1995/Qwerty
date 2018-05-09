@@ -34,3 +34,18 @@ html {
 }
 
 
+#contieneCombo{
+    width: 50%;
+    margin: auto;
+    padding-bottom: 2%;
+}
+#modal-headerNoticia{
+    background: #5d4384;
+    color: white;
+}
+
+#MapaContenedor{
+    background: black;  
+}
+
+
